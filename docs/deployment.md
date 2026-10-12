@@ -16,8 +16,8 @@
 
 ## Pendências antes da divulgação
 1. Substituir o nome provisório pela marca definitiva, se desejado.
-2. Configurar o número real do WhatsApp Business em js/config.js.
-3. Configurar URLs reais do Instagram e Facebook.
-4. Confirmar o contato em um celular e testar a prévia social em cada plataforma.
+2. Testar o botão de WhatsApp em um celular e confirmar que o número está correto.
+3. Confirmar o link do Facebook e configurar o Instagram assim que o perfil correto for identificado.
+4. Testar a prévia social em cada plataforma.
 
-A URL está publicada e acessível, mas o CTA de contato ainda não encaminha para um número real até que o proprietário configure os dados comerciais.
+O CTA está configurado para abrir uma conversa no WhatsApp informado. O perfil do Facebook também está configurado. O Instagram permanece sem link até ser confirmado, evitando associar por engano uma conta de outra pessoa.
