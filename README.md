@@ -29,7 +29,7 @@ Esses componentes constam do plano de construção para missões futuras.
 - Banco futuro: Neon Postgres.
 
 ## Configuração pendente antes da divulgação
-O WhatsApp e o Facebook do responsável já estão configurados em `js/config.js`. O Instagram ainda está pendente de confirmação pública; o nome definitivo da marca também pode ser ajustado nesse arquivo.
+O WhatsApp, o Facebook e o Instagram do responsável estão configurados em `js/config.js`. O nome definitivo da marca também pode ser ajustado nesse arquivo.
 
 ## Critérios de aceite
 - Layout responsivo em celular e desktop.
