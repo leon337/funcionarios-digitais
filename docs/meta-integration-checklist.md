@@ -91,3 +91,12 @@ O código inicial e seus testes ficam prontos no repositório, mas os testes de 
 - [x] `POST /api/meta/whatsapp/messages` sem credenciais foi testado e respondeu HTTP 503 `integration_not_configured` sem efetuar envio.
 - [x] Vercel CLI confirmou que o projeto não tem variáveis de ambiente configuradas.
 - [ ] Configurar segredos reais apenas depois de concluir o inventário dos ativos e identificar o app/conta corretos. Até lá, as APIs de escrita permanecem inativas.
+
+## Identidades e coordenação de navegador (2026-10-12)
+
+- [x] O proprietário informou que as duas instâncias do Dual Browser estão autenticadas com as contas pessoais usadas para o trabalho cotidiano.
+- [x] O proprietário informou que a conta/portfólio Meta Business usado para as integrações fica em nome de **Leonardo Paulo**, separado da conta pessoal do navegador.
+- [x] Coordenação entre instâncias: MESTRE orquestrador = Workspace `notebook-team2`; agente executor paralelo no VGA = Workspace `notebook`.
+- [x] A missão de inventário foi enviada ao ChatGPT da janela VGA, orientando-o a operar somente `notebook`, obedecer às prioridades do MESTRE e comunicar achados neste chat.
+- [ ] O portfólio empresarial de nome Leonardo Paulo ainda precisa ser selecionado/confirmado na própria interface Meta antes de alterar ativos. A aparição anterior de Predix AI Br é somente uma observação da sessão anterior, não prova de que seja o portfólio correto para essa integração.
+- [ ] O agente do VGA deve reportar a identidade visível do Business, Página, Instagram handle/tipo/vínculo e estado da WABA; nenhum ativo deve ser criado ou convertido até essa confirmação.

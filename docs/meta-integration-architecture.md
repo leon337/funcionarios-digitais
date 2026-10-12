@@ -92,3 +92,12 @@ Para template, usar um objeto com type=template, nome aprovado, idioma pt_BR e c
 - Meta, Instagram API (documentação da Meta publicada no Postman): https://www.postman.com/meta/instagram/documentation/6yqw8pt/instagram-api
 - Meta, WhatsApp Cloud API (documentação da Meta publicada no Postman): https://www.postman.com/meta/whatsapp-business-platform/documentation/wlk6lh4/whatsapp-cloud-api
 - Meta, webhook payload / requisitos HTTPS e inscrição da WABA: https://www.postman.com/meta/whatsapp-business-platform/folder/tduohwq/webhook-payload-reference
+
+## Contas e operação com dois navegadores
+
+A sessão pessoal usada para navegar não deve ser confundida com o portfólio empresarial Meta. O proprietário informou que as integrações serão feitas no Business associado a **Leonardo Paulo**. Verificar o nome do portfólio e a propriedade dos ativos antes de escolher Página, conta Instagram ou WABA. A sessão anterior mostrou Predix AI Br, mas isso não estabelece que seja o portfólio desejado.
+
+Coordenação do projeto em 2026-10-12:
+- MESTRE (orquestração técnica, GitHub/Vercel, validação): Workspace da instância MCF Dual Browser `notebook-team2`.
+- Agente executor de ativos Meta em paralelo: Workspace da instância `notebook` (janela VGA).
+- Não operar na instância alheia nem duplicar operações. O agente do VGA deve comunicar os achados e bloqueios ao MESTRE antes de alterar um ativo se a identidade não estiver clara.
