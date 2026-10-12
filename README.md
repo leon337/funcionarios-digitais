@@ -38,3 +38,7 @@ O número de WhatsApp comercial, o nome definitivo da marca e os links dos perfi
 - CTA de diagnóstico.
 - Instruções de configuração.
 - URL publicada e verificada antes de considerar a entrega concluída.
+
+## Publicação inicial
+
+O portfólio está publicado em https://funcionarios-digitais.vercel.app/. Consulte docs/deployment.md para validações e pendências antes da divulgação.

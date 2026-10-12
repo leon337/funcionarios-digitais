@@ -6,6 +6,8 @@ Entregáveis: visão, posicionamento, roadmap, arquitetura-alvo, critérios de a
 Saída: documentação registrada e repositório acessível.
 
 ## Fase 1 — Portfólio comercial (primeiro entregável)
+
+**Status em 2026-10-12:** implementado e publicado. Falta configurar o WhatsApp e os perfis sociais reais antes de promover publicamente. Consulte docs/deployment.md.
 **Objetivo:** fornecer presença profissional para redes sociais e conversas comerciais.
 Escopo:
 - Página responsiva com posicionamento e proposta de valor.
