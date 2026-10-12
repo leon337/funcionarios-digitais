@@ -80,3 +80,14 @@ O código inicial e seus testes ficam prontos no repositório, mas os testes de 
 - [ ] Verificar na WABA existente se há número de telefone já registrado e se está autorizado para Cloud API antes de iniciar experimentos ou adicionar número.
 - [ ] Escolher formalmente o app Meta a ser usado em produção. Hipótese inicial: avaliar se MCF Communications pode acomodar também os casos de Página/Instagram ou manter Content Factory para esses canais; decidir após verificar permissões, produto e propriedade.
 - [ ] Não criar Página, WABA, app ou vínculo duplicado enquanto o inventário de ativos não estiver concluído.
+
+## Registro de teste e publicação (2026-10-12)
+
+- [x] `npm run check` passou sem erros.
+- [x] `npm test` passou com **12/12 testes**, usando fetch simulado para evitar publicações e envios reais.
+- [x] Commit e push para GitHub: implementação `41f721c`, testes ampliados `5a61226` (branch `main`).
+- [x] Deploy de produção da Vercel concluído no domínio https://funcionarios-digitais.vercel.app/.
+- [x] `GET /api/meta/status` respondeu HTTP 200, versão Graph API configurada como `v26.0` e todos os canais sinalizados como não configurados.
+- [x] `POST /api/meta/whatsapp/messages` sem credenciais foi testado e respondeu HTTP 503 `integration_not_configured` sem efetuar envio.
+- [x] Vercel CLI confirmou que o projeto não tem variáveis de ambiente configuradas.
+- [ ] Configurar segredos reais apenas depois de concluir o inventário dos ativos e identificar o app/conta corretos. Até lá, as APIs de escrita permanecem inativas.

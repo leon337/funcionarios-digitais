@@ -77,3 +77,7 @@ Consulte docs/deployment.md para verificações de produção e docs/meta-integr
 ## Inventário Meta conhecido
 
 Na auditoria inicial de 2026-10-12, a sessão do Business Suite mostrou o portfólio **Predix AI Br**. Meta for Developers já tem três apps: **Content Factory** (em desenvolvimento, com casos de uso de conteúdo do Instagram e gerenciamento da Página), **MCF Communications** (caso de uso WhatsApp; app ainda não publicado) e **Hello Agent** (ativo/publicado, adequação não auditada). Consulte docs/meta-integration-checklist.md. A existência desses apps não comprova que os ativos ou tokens estejam conectados ao projeto Funcionários Digitais; não crie ativos duplicados antes de confirmar propriedade, perfil Instagram, Página e WABA.
+
+## Validação da base Meta
+
+Em 2026-10-12, `npm run check` passou e `npm test` passou com 12/12 testes, incluindo chamadas simuladas da Graph API sem publicar ou enviar mensagens reais. O deploy está publicado em https://funcionarios-digitais.vercel.app/. A rota `GET /api/meta/status` respondeu HTTP 200; os três canais permanecem não configurados porque a Vercel ainda não possui variáveis de ambiente para a Meta. O teste de envio WhatsApp sem configuração respondeu HTTP 503, em comportamento fail-closed. Detalhes e próxima etapa em docs/meta-integration-checklist.md.
