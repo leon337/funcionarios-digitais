@@ -3,21 +3,27 @@
 ## Fase 0 — Alinhamento e fundação
 **Objetivo:** preservar a visão, definir fronteiras e preparar o repositório.
 Entregáveis: visão, posicionamento, roadmap, arquitetura-alvo, critérios de aceite e repositório GitHub.
-Saída: documentação registrada e repositório acessível.
+**Saída:** documentação registrada e repositório acessível.
+**Status:** concluída.
 
-## Fase 1 — Portfólio comercial (primeiro entregável)
-
-**Status em 2026-10-12:** implementado e publicado. Falta configurar o WhatsApp e os perfis sociais reais antes de promover publicamente. Consulte docs/deployment.md.
+## Fase 1 — Portfólio comercial
 **Objetivo:** fornecer presença profissional para redes sociais e conversas comerciais.
-Escopo:
-- Página responsiva com posicionamento e proposta de valor.
-- Tipos de funcionários digitais e processo de implantação.
-- CTA de diagnóstico, perguntas frequentes e limites transparentes.
-- Metadados de compartilhamento social e SEO básico.
-- Configuração simples de marca, WhatsApp e perfis sociais.
-- Publicação pela Vercel CLI e verificação da URL.
-Fora de escopo: CRM, persistência de leads, login, integração real de mensagens, pagamentos e faturamento.
-Saída: site publicado, responsivo e com canais reais configurados antes da divulgação.
+Escopo: página responsiva, proposta de valor, tipos de funcionários digitais, processo de implantação, FAQ, limites transparentes, metadados sociais/SEO, configuração de marca e links sociais.
+**Status em 2026-10-12:** implementada, publicada e verificada em https://funcionarios-digitais.vercel.app/. Links de contato não são integrações API.
+**Saída:** presença pública pronta para validação, sem afirmar que as APIs estão conectadas.
+
+## Fase 1B — Integração oficial Meta
+**Objetivo:** preparar a base técnica para operar com APIs oficiais de Facebook Pages, Instagram profissional e WhatsApp Cloud API.
+Entregáveis:
+- endpoints server-side separados do frontend;
+- autorização administrativa por token de servidor;
+- publicar texto/link em Página do Facebook;
+- criar e publicar contêiner de imagem no Instagram após status FINISHED;
+- enviar mensagem individual de texto ou template aprovado pelo WhatsApp Cloud API;
+- verificar handshake e assinatura HMAC do webhook WhatsApp;
+- testes locais e checklist de ativação.
+**Status em 2026-10-12:** scaffold de endpoints e documentação implementados; ativação real depende de sessão Meta autenticada, inventário de ativos, permissões e segredos Vercel. O webhook aceita payload verificado, mas ainda não processa mensagens para funcionários digitais.
+**Saída:** testes locais aprovados e um teste externo controlado por canal, sem segredos no Git.
 
 ## Fase 2 — Descoberta comercial e validação
 - Entrevistar empresários de setores variados.
@@ -25,16 +31,18 @@ Saída: site publicado, responsivo e com canais reais configurados antes da divu
 - Registrar objeções, necessidades e disposição a pagar.
 - Comparar segmentos antes de escolher campanhas específicas.
 - Definir oferta inicial, implantação e suporte.
-Saída: problema prioritário validado e primeira oferta definida.
+**Saída:** problema prioritário validado e primeira oferta definida.
 
-## Fase 3 — Plataforma comercial (planejada; não construir nesta missão)
-Capacidades previstas: diagnóstico, registro e qualificação de leads, pipeline, histórico, propostas, páginas por segmento e métricas de aquisição/conversão.
-Arquitetura candidata: Next.js + TypeScript, camada de servidor, Neon Postgres, migrações versionadas, validação, controle de acesso e proteção de dados.
-Saída: fluxo comercial ponta a ponta testado com acesso seguro e métricas úteis.
+## Fase 3 — Plataforma comercial
+**Planejada; não construir antes da integração e da oferta inicial serem validadas.**
+Capacidades: diagnóstico, registro/qualificação de leads, pipeline, histórico, propostas, páginas por segmento e métricas de aquisição/conversão.
+Arquitetura candidata: Next.js + TypeScript, camada server-side, Neon Postgres, migrações versionadas, validação e controle de acesso.
+**Saída:** fluxo comercial ponta a ponta testado com acesso seguro e métricas úteis.
 
-## Fase 4 — Plataforma de funcionários digitais (planejada; não construir nesta missão)
-Capacidades previstas: configuração de funções e políticas, base de conhecimento, integrações oficiais, webhooks, processamento assíncrono, ferramentas autorizadas, escalonamento humano, auditoria, observabilidade e isolamento por cliente.
-Saída: fluxo real de atendimento e qualificação executado de ponta a ponta com segurança e avaliação documentada.
+## Fase 4 — Plataforma de funcionários digitais
+**Planejada.**
+Capacidades: configuração de função e políticas, base de conhecimento, integrações oficiais, webhooks, processamento assíncrono, ferramentas autorizadas, escalonamento humano, auditoria, observabilidade e isolamento por cliente.
+**Saída:** atendimento/qualificação executado de ponta a ponta com segurança e avaliação documentada.
 
 ## Fase 5 — Piloto pago
 Selecionar cliente piloto, medir linha de base, implantar fluxo limitado, avaliar qualidade, custos e resultados, corrigir falhas antes de expandir.
@@ -43,8 +51,9 @@ Selecionar cliente piloto, medir linha de base, implantar fluxo limitado, avalia
 Criar campanhas para segmentos com maior aderência, reutilizar componentes, automatizar onboarding e ampliar canais conforme demanda validada.
 
 ## Dependências críticas
-- Marca, domínio, WhatsApp e perfis sociais fornecidos pelo proprietário.
-- Aprovação de contas e APIs oficiais dos canais.
-- Política de privacidade, retenção e consentimento adequados.
-- Neon e credenciais apenas quando a persistência for implementada.
+- Ativos Meta e números fornecidos/controlados pelo proprietário.
+- Aprovação de contas e permissões das APIs oficiais.
+- Política de privacidade, retenção, consentimento e opt-in adequados.
+- Segredos configurados apenas nos ambientes server-side.
+- Neon e credenciais somente quando a persistência for implementada.
 - Orçamento operacional e limites de consumo de IA e mensagens.

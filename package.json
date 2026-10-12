@@ -1,0 +1,10 @@
+{
+  "name": "funcionarios-digitais",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Portfólio e integrações server-side oficiais da Meta para Funcionários Digitais.",
+  "scripts": {
+    "check": "node --check api/_lib/meta.js && node --check api/meta/status.js && node --check api/meta/facebook/publish.js && node --check api/meta/instagram/container.js && node --check api/meta/instagram/publish.js && node --check api/meta/whatsapp/messages.js && node --check api/meta/webhooks/whatsapp.js",
+    "test": "node --test tests/*.test.cjs"
+  }
+}
