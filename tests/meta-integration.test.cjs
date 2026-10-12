@@ -7,6 +7,7 @@ const crypto = require('node:crypto');
 const statusHandler = require('../api/meta/status');
 const facebookPublishHandler = require('../api/meta/facebook/publish');
 const instagramContainerHandler = require('../api/meta/instagram/container');
+const instagramPublishHandler = require('../api/meta/instagram/publish');
 const whatsappMessageHandler = require('../api/meta/whatsapp/messages');
 const whatsappWebhookHandler = require('../api/meta/webhooks/whatsapp');
 
@@ -166,4 +167,124 @@ test('WhatsApp webhook accepts signed payload and rejects tampered signature', a
   }, bad);
   assert.equal(bad.statusCode, 401);
   assert.equal(bad.data.error, 'invalid_webhook_signature');
+}));
+
+
+test('Facebook Page publication uses only the configured server token and returns the post ID', async () => withEnv({
+  META_ADMIN_TOKEN: 'admin-token-for-test',
+  META_PAGE_ID: '112233445566',
+  META_PAGE_ACCESS_TOKEN: 'page-token-for-test',
+  META_GRAPH_API_VERSION: 'v26.0'
+}, async () => {
+  const oldFetch = global.fetch;
+  let captured;
+  global.fetch = async (url, options) => {
+    captured = { url: String(url), options };
+    return { ok: true, status: 200, json: async () => ({ id: '112233445566_778899' }) };
+  };
+  try {
+    const res = responseMock();
+    await facebookPublishHandler({
+      method: 'POST',
+      headers: { authorization: 'Bearer admin-token-for-test' },
+      body: { message: 'Post de teste simulado', link: 'https://example.org/offer' }
+    }, res);
+    assert.equal(res.statusCode, 201);
+    assert.equal(res.data.id, '112233445566_778899');
+    assert.match(captured.url, /graph\.facebook\.com\/v26\.0\/112233445566\/feed$/);
+    assert.equal(captured.options.method, 'POST');
+    assert.equal(captured.options.headers.Authorization, 'Bearer page-token-for-test');
+    assert.match(captured.options.body, /message=Post/);
+    assert.match(captured.options.body, /link=https%3A%2F%2Fexample.org%2Foffer/);
+  } finally {
+    global.fetch = oldFetch;
+  }
+}));
+
+test('Instagram status query and media publishing flow work with mocked Graph API responses', async () => withEnv({
+  META_ADMIN_TOKEN: 'admin-token-for-test',
+  META_IG_USER_ID: '998877665544',
+  META_IG_ACCESS_TOKEN: 'ig-token-for-test',
+  META_GRAPH_API_VERSION: 'v26.0'
+}, async () => {
+  const oldFetch = global.fetch;
+  const calls = [];
+  global.fetch = async (url, options) => {
+    calls.push({ url: String(url), options });
+    if (calls.length === 1) return { ok: true, status: 200, json: async () => ({ status_code: 'FINISHED', status: 'Finished' }) };
+    return { ok: true, status: 200, json: async () => ({ id: '998877665544_123456' }) };
+  };
+  try {
+    const res = responseMock();
+    await instagramPublishHandler({
+      method: 'POST',
+      headers: { authorization: 'Bearer admin-token-for-test' },
+      body: { creationId: '1234567890123' }
+    }, res);
+    assert.equal(res.statusCode, 201);
+    assert.equal(res.data.id, '998877665544_123456');
+    assert.match(calls[0].url, /1234567890123\?fields=status_code,status$/);
+    assert.match(calls[1].url, /998877665544\/media_publish$/);
+    assert.equal(calls[1].options.method, 'POST');
+  } finally {
+    global.fetch = oldFetch;
+  }
+}));
+
+test('Instagram cannot publish a container that is not finished', async () => withEnv({
+  META_ADMIN_TOKEN: 'admin-token-for-test',
+  META_IG_USER_ID: '998877665544',
+  META_IG_ACCESS_TOKEN: 'ig-token-for-test'
+}, async () => {
+  const oldFetch = global.fetch;
+  let count = 0;
+  global.fetch = async () => {
+    count += 1;
+    return { ok: true, status: 200, json: async () => ({ status_code: 'IN_PROGRESS', status: 'Media is being processed' }) };
+  };
+  try {
+    const res = responseMock();
+    await instagramPublishHandler({
+      method: 'POST',
+      headers: { authorization: 'Bearer admin-token-for-test' },
+      body: { creationId: '1234567890123' }
+    }, res);
+    assert.equal(res.statusCode, 409);
+    assert.equal(res.data.error, 'container_not_ready');
+    assert.equal(count, 1);
+  } finally {
+    global.fetch = oldFetch;
+  }
+}));
+
+test('WhatsApp message sending path formats a single-recipient request without using a real network call', async () => withEnv({
+  META_ADMIN_TOKEN: 'admin-token-for-test',
+  META_WA_PHONE_NUMBER_ID: '123456789012345',
+  META_WA_ACCESS_TOKEN: 'wa-token-for-test',
+  META_GRAPH_API_VERSION: 'v26.0'
+}, async () => {
+  const oldFetch = global.fetch;
+  let captured;
+  global.fetch = async (url, options) => {
+    captured = { url: String(url), options };
+    return { ok: true, status: 200, json: async () => ({ messages: [{ id: 'wamid.test' }] }) };
+  };
+  try {
+    const res = responseMock();
+    await whatsappMessageHandler({
+      method: 'POST',
+      headers: { authorization: 'Bearer admin-token-for-test' },
+      body: { to: '+55 (81) 99999-9999', text: 'Mensagem simulada; não enviada' }
+    }, res);
+    assert.equal(res.statusCode, 202);
+    assert.equal(res.data.messageId, 'wamid.test');
+    assert.match(captured.url, /123456789012345\/messages$/);
+    assert.equal(captured.options.method, 'POST');
+    const sent = JSON.parse(captured.options.body);
+    assert.equal(sent.to, '5581999999999');
+    assert.equal(sent.text.body, 'Mensagem simulada; não enviada');
+    assert.equal(captured.options.headers.Authorization, 'Bearer wa-token-for-test');
+  } finally {
+    global.fetch = oldFetch;
+  }
 }));
