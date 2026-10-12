@@ -16,7 +16,7 @@
 
 ## Pendências antes da divulgação
 1. Substituir o nome provisório pela marca definitiva, se desejado.
-2. Configurar o número real do WhatsApp Business em portfolio/js/config.js.
+2. Configurar o número real do WhatsApp Business em js/config.js.
 3. Configurar URLs reais do Instagram e Facebook.
 4. Confirmar o contato em um celular e testar a prévia social em cada plataforma.
 

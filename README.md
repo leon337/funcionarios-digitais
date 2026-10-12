@@ -20,7 +20,7 @@ Esses componentes constam do plano de construção para missões futuras.
 - docs/roadmap.md — fases e entregáveis.
 - docs/architecture.md — arquitetura-alvo e limites.
 - docs/decisions/ADR-001-scope-and-product-separation.md — decisão de separar as três superfícies.
-- portfolio/ — primeiro entregável publicável.
+- index.html, css/, js/ e assets/ — primeiro entregável publicável.
 
 ## Tecnologias
 - Portfólio inicial: HTML, CSS e JavaScript estáticos.
@@ -29,7 +29,7 @@ Esses componentes constam do plano de construção para missões futuras.
 - Banco futuro: Neon Postgres.
 
 ## Configuração pendente antes da divulgação
-O número de WhatsApp comercial, o nome definitivo da marca e os links dos perfis sociais ainda precisam ser fornecidos pelo proprietário. Esses dados ficam isolados em portfolio/js/config.js.
+O número de WhatsApp comercial, o nome definitivo da marca e os links dos perfis sociais ainda precisam ser fornecidos pelo proprietário. Esses dados ficam isolados em js/config.js.
 
 ## Critérios de aceite
 - Layout responsivo em celular e desktop.
@@ -41,4 +41,4 @@ O número de WhatsApp comercial, o nome definitivo da marca e os links dos perfi
 
 ## Publicação inicial
 
-O portfólio está publicado em https://funcionarios-digitais.vercel.app/. Consulte docs/deployment.md para validações e pendências antes da divulgação.
+O portfólio está publicado em https://funcionarios-digitais.vercel.app/ e servido a partir da raiz do repositório para manter os deploys do GitHub e da CLI consistentes. Consulte docs/deployment.md para validações e pendências antes da divulgação.
